@@ -6,42 +6,43 @@ const API_KEY = "f2606f929b628e4a115736f3765473ca";
 button.addEventListener("click", () => {
   output.textContent = "Getting your location...";
 
-  navigator.geolocation.getCurrentPosition(async (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
 
-    console.log("Geolocation success");
-    console.log("Latitude:", latitude);
-    console.log("Longitude:", longitude);
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=imperial`;
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
-    console.log("Fetching weather from URL:");
-    console.log(url);
+      /* === API FETCH LOGS ONLY === */
+      console.log("FETCH →", url);
 
-    try {
-      const response = await fetch(url);
-      console.log("Fetch response object:", response);
+      try {
+        const response = await fetch(url);
 
-      if (!response.ok) {
-        console.error("API responded with error:", response.status);
-        throw new Error(`HTTP error ${response.status}`);
-      }
+        console.log("FETCH RESPONSE →", {
+          status: response.status,
+          ok: response.ok,
+        });
 
-      const data = await response.json();
-      console.log("Weather API JSON data:", data);
+        const data = await response.json();
+        console.log("FETCH DATA →", data);
 
-      const city = data.name;
-      const temp = data.main.temp;
-      const description = data.weather[0].description;
+        const city = data.name;
+        const temp = data.main.temp;
+        const description = data.weather[0].description;
 
-      output.innerHTML = `
-                     <strong>${city}</strong><br>
-                     Temperature: ${temp}°C<br>
-                     Weather: ${description}
+        output.innerHTML = `
+                    <strong>${city}</strong><br>
+                    Temperature: ${temp}°C<br>
+                    Weather: ${description}
                 `;
-    } catch (error) {
-      console.error(" Fetch failed:", error);
-      output.textContent = "Failed to fetch weather data.";
+      } catch (error) {
+        console.log("FETCH ERROR →", error);
+        output.textContent = "Failed to fetch weather data.";
+      }
+    },
+    () => {
+      output.textContent = "Unable to retrieve location.";
     }
-  });
+  );
 });
