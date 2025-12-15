@@ -33,7 +33,7 @@ button.addEventListener("click", () => {
 
         output.innerHTML = `
                     <strong>${city}</strong><br>
-                    Temperature: ${temp}°C<br>
+                    Temperature: ${temp}°F<br>
                     Weather: ${description}
                 `;
       } catch (error) {
