@@ -1,8 +1,24 @@
 body {
-  background-color: #E0DDB2;
+  background-color: #e0ddb2;
 }
 
-.cont{
-    background-color: white;
-    border-radius: 25px;
+.containerCurrentSearch {
+  background-color: white;
+  border-radius: 25px;
+}
+.containerHighTemp {
+  background-color: #bcb28c;
+  border-radius: 25px;
+}
+.containerLowTemp {
+  background-color: #73608c;
+  border-radius: 25px;
+}
+.containerWindSpeed {
+  background-color: #8c6160;
+  border-radius: 25px;
+}
+.containerHumidity {
+  background-color: #8ca6bc;
+  border-radius: 25px;
 }

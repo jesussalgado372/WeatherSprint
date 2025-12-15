@@ -20,10 +20,39 @@
     <p id="output">Click the button to get your location.</p>
 
     <!-- Local Area Container Start-->
-    <div class="cont">
+    <div class="containerCurrentSearch">
       <div class="row">
-        <img src="/assets/Sunrise-nobg-removebg-preview.png" alt="sunrise icon">
+        <img
+          src="/assets/Sunrise-nobg-removebg-preview.png"
+          alt="sunrise icon"
+        />
         <h1>Stockton, CA</h1>
+        <div class="containerHighTemp">
+          <div class="row">
+            <h1>High</h1>
+            <img src="/assets/HighTemp.png" alt="High Temp Icon" />
+          </div>
+          <h2 id="hightTemp">69 °F</h2>
+        </div>
+        <div class="containerLowTemp">
+          <h1>Low</h1>
+          <img src="/assets/LowTemp.png" alt="Low Temp Icon" />
+          <h2 id="lowTemp">27 °F</h2>
+        </div>
+        <div class="containerWindSpeed">
+          <div class="row">
+            <h1>Wind</h1>
+            <img src="/assets/Wind.png" alt="Wind Speed Icon" />
+          </div>
+          <h2 id="windSpeed"> 3 mph</h2>
+        </div>
+        <div class="containerHumidity">
+            <div class="row">
+                <h1>Humidity</h1>
+                <img src="/assets/WaterDrop.png" alt="Humidity Icon">
+            </div>
+            <h2 id="humidityPercentage">0%</h2>
+        </div>
       </div>
     </div>
     <!-- Local Area Container End -->
