@@ -13,7 +13,7 @@ body {
 .containerCurrentSearch {
   background-color: white;
   width: 884px;
-  height: 958px;
+  height: 900px;
   border: 1px solid #ddd;
   padding: 15px;
   box-sizing: border-box;
@@ -23,7 +23,7 @@ body {
 .containerNewSearch {
   background-color: white;
   width: 707px;
-  height: 958px;
+  height: 900px;
   border: 1px solid #ddd;
   padding: 15px;
   box-sizing: border-box;

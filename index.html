@@ -12,75 +12,81 @@
     />
     <link rel="stylesheet" href="/styles/styles.css" />
   </head>
+
   <body>
-    <!-- Current Search Container Start-->
+    <!-- Current Search Container Start -->
     <div class="main-container">
       <div class="containerCurrentSearch">
         <div class="row">
           <img
             src="/assets/Sunrise-nobg-removebg-preview.png"
             alt="sunrise icon"
-            style="width: 237px;
-            height: 135px;
-            "
+            style="width: 237px; height: 135px"
           />
-          <h1>Stockton, CA</h1>
-          <img src="/assets/star-outline-2-removebg-preview.png"
-           alt="Favorite Star Empty"
-           style="width: 57px;
-           height: 59px;">
+
+          <div class="d-flex align-items-center gap-3">
+            <h1 class="mb-0">Stockton, CA</h1>
+            <button class="btn p-0 border-0 bg-transparent">
+              <img
+                src="/assets/star-outline-2-removebg-preview.png"
+                alt="Favorite Star Empty"
+                style="width: 57px; height: 59px"
+              />
+            </button>
+          </div>
+
           <div class="containerHighTemp">
             <div class="row">
               <h1>High</h1>
-              <img src="/assets/HighTemp-removebg-preview.png" 
-              alt="High Temp Icon"
-              style="width: 100px;
-              height: 36px;
-              "
-               />
+              <img
+                src="/assets/HighTemp-removebg-preview.png"
+                alt="High Temp Icon"
+                style="width: 100px; height: 36px"
+              />
             </div>
-            <h2 id="hightTemp">69 °F</h2>
+            <h2 id="highTemp">69 °F</h2>
           </div>
+
           <div class="containerLowTemp">
             <h1>Low</h1>
-            <img src="/assets/LowTemp-removebg-preview.png" 
-            alt="Low Temp Icon"
-            style="width: 100px;
-            height: 36px;
-            " />
+            <img
+              src="/assets/LowTemp-removebg-preview.png"
+              alt="Low Temp Icon"
+              style="width: 100px; height: 36px"
+            />
             <h2 id="lowTemp">27 °F</h2>
           </div>
+
           <div class="containerWindSpeed">
             <div class="row">
               <h1>Wind</h1>
               <img
-              src="/assets/weather-61.png" 
-              alt="Wind Speed Icon"
-              style="width: 100px;
-              height: 36px;
-              " />
+                src="/assets/weather-61.png"
+                alt="Wind Speed Icon"
+                style="width: 100px; height: 36px"
+              />
             </div>
             <h2 id="windSpeed">3 mph</h2>
           </div>
+
           <div class="containerHumidity">
             <div class="row">
               <h1>Humidity</h1>
-              <img src="/assets/droplet-2-blue.png" 
-              alt="Humidity Icon"
-              style="width: 100px;
-              height: 40px;
-              " />
+              <img
+                src="/assets/droplet-2-blue.png"
+                alt="Humidity Icon"
+                style="width: 100px; height: 40px"
+              />
             </div>
             <h2 id="humidityPercentage">0%</h2>
           </div>
         </div>
       </div>
 
-    <!-- Current Search Container End -->
+      <!-- Current Search Container End -->
 
-    <!-- 5 Day Forecast Container Start -->
-    <div class="containerNewSearch">
-      <div>
+      <!-- 5 Day Forecast Container Start -->
+      <div class="containerNewSearch">
         <div class="row">
           <input
             id="cityInput"
@@ -89,48 +95,57 @@
             placeholder="Search..."
           />
           <h5>Favorites:</h5>
-          <p id="storedValue">St. Louis, MO <br />Addis Ababa, ETH</p>
+          <p id="storedValue">
+            St. Louis, MO <br />
+            Addis Ababa, ETH
+          </p>
         </div>
+
         <div class="container5DayForecast">
           <h3>5-Day Forecast</h3>
-        <div class="containerMonday">
-          <div class="row">
-            <div class="col"><h6>Monday</h6></div>
-            <div class="col"><h6>Hi: 99 °F</h6></div>
-            <div class="col"><h6>Lo: 00 °F</h6></div>
+
+          <div class="containerMonday">
+            <div class="row">
+              <div class="col"><h6>Monday</h6></div>
+              <div class="col"><h6>Hi: 99 °F</h6></div>
+              <div class="col"><h6>Lo: 00 °F</h6></div>
+            </div>
+          </div>
+
+          <div class="containerTuesday">
+            <div class="row">
+              <div class="col"><h6>Tuesday</h6></div>
+              <div class="col"><h6>Hi: 99 °F</h6></div>
+              <div class="col"><h6>Lo: 00 °F</h6></div>
+            </div>
+          </div>
+
+          <div class="containerWednesday">
+            <div class="row">
+              <div class="col"><h6>Wednesday</h6></div>
+              <div class="col"><h6>Hi: 99 °F</h6></div>
+              <div class="col"><h6>Lo: 00 °F</h6></div>
+            </div>
+          </div>
+
+          <div class="containerThursday">
+            <div class="row">
+              <div class="col"><h6>Thursday</h6></div>
+              <div class="col"><h6>Hi: 99 °F</h6></div>
+              <div class="col"><h6>Lo: 00 °F</h6></div>
+            </div>
+          </div>
+
+          <div class="containerFriday">
+            <div class="row">
+              <div class="col"><h6>Friday</h6></div>
+              <div class="col"><h6>Hi: 99 °F</h6></div>
+              <div class="col"><h6>Lo: 00 °F</h6></div>
+            </div>
           </div>
         </div>
-        <div class="containerTuesday">
-          <div class="row">
-            <div class="col"><h6>Tuesday</h6></div>
-            <div class="col"><h6>Hi: 99 °F</h6></div>
-            <div class="col"><h6>Lo: 00 °F</h6></div>
-          </div>
-        </div>
-        <div class="containerWednesday">
-          <div class="row">
-            <div class="col"><h6>Wednesday</h6></div>
-            <div class="col"><h6>Hi: 99 °F</h6></div>
-            <div class="col"><h6>Lo: 00 °F</h6></div>
-          </div>
-        </div>
-        <div class="containerThursday">
-          <div class="row">
-            <div class="col"><h6>Thursday</h6></div>
-            <div class="col"><h6>Hi: 99 °F</h6></div>
-            <div class="col"><h6>Lo: 00 °F</h6></div>
-          </div>
-        </div>
-        <div class="containerFriday">
-          <div class="row">
-            <div class="col"><h6>Friday</h6></div>
-            <div class="col"><h6>Hi: 99 °F</h6></div>
-            <div class="col"><h6>Lo: 00 °F</h6></div>
-          </div>
-        </div>
-        </div>
-    </div>
-    <!-- 5 Day Forecast Container End -->
+      </div>
+      <!-- 5 Day Forecast Container End -->
     </div>
 
     <script
