@@ -191,36 +191,50 @@ body {
   color: #000;
 }
 
+/* Wrapper for the forecast section */
+.forecast-container-wrapper {
+  position: absolute;
+  width: 495px; /* Figma rectangle width */
+  height: 741px; /* Figma rectangle height */
+  left: 1198px;
+  top: 255px;
+}
+
+/* Background rectangle (#D5E3F2) */
+.forecast-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #d5e3f2;
+  border: 1px solid #000;
+  border-radius: 25px;
+  z-index: 1;
+}
+
+/* Forecast Title */
 .forecast-title {
   position: absolute;
-  width: 358px;
-  height: 73px;
-  left: 1267px;
-  top: 283px;
+  top: 28px; /* distance from top edge of rectangle, adjust if needed */
+  width: 100%;
+  text-align: center;
   font-family: "Lato", sans-serif;
   font-weight: 300;
   font-size: 48px;
   line-height: 58px;
-  text-align: center;
   color: #000;
+  z-index: 2;
 }
 
-.forecast-rect {
+/* Forecast items container */
+.forecast-items {
   position: absolute;
-  width: 380px;
-  height: 92px;
-  left: 1256px;
-  border: 1px solid #000;
-  border-radius: 25px;
-}
-
-.forecast-container {
-  position: absolute;
-  left: 1256px; /* matches Figma frame */
-  top: 382px;
+  top: 127px; /* spacing below title to first day rectangle */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px; /* spacing between rectangles */
+  gap: 18px; /* space between forecast days */
+  z-index: 2;
+  padding-left: 38px; /* horizontal padding inside rectangle */
 }
 
 /* Each day rectangle */
@@ -233,36 +247,47 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
-/* Different background colors for each day */
-.forecast-day.monday { background: #FFBFBF; }
-.forecast-day.tuesday { background: #FFE8D2; }
-.forecast-day.wednesday { background: #FEFFD3; }
-.forecast-day.thursday { background: #D9FFBA; }
-.forecast-day.friday { background: #A9E5FB; }
+/* Background colors for each day */
+.forecast-day.monday {
+  background: #ffbfbf;
+}
+.forecast-day.tuesday {
+  background: #ffe8d2;
+}
+.forecast-day.wednesday {
+  background: #feffd3;
+}
+.forecast-day.thursday {
+  background: #d9ffba;
+}
+.forecast-day.friday {
+  background: #a9e5fb;
+}
 
-/* Day name */
+/* Text lines */
+.day-name,
+.hi,
+.lo {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 28px;
+  color: #000;
+  text-align: center;
+}
+
 .day-name {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-size: 25px;
-  line-height: 30px;
-  color: #000;
-  text-align: center;
+  margin-bottom: 2px;
 }
-
-/* Hi and Lo temperatures */
-.hi, .lo {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-size: 25px;
-  line-height: 30px;
-  text-align: center;
-  color: #000;
+.hi {
+  margin-bottom: 2px;
 }
-
-
+.lo {
+  margin-bottom: 0;
+}
 
 .iconWeather,
 .iconHighTemp,
