@@ -1,86 +1,219 @@
 body {
-  background-color: #e0ddb2;
-}
-.main-container {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f0f0f0;
 }
 
-.containerCurrentSearch {
-  background-color: white;
+.frame {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  background: #E0DDB2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rectangle-white-left {
+  position: absolute;
   width: 884px;
-  height: 900px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  box-sizing: border-box;
+  height: 958px;
+  left: 76px;
+  top: 79px;
+  background: #FFFFFF;
+  border: 1px solid #000;
   border-radius: 25px;
 }
 
-.containerNewSearch {
-  background-color: white;
+.rectangle-left-top {
+  position: absolute;
+  width: 280px;
+  height: 216px;
+  left: 203px;
+  top: 540px;
+  background: #BCB28C;
+  border: 1px solid #000;
+  border-radius: 25px;
+}
+
+.rectangle-left-bottom {
+  position: absolute;
+  width: 280px;
+  height: 216px;
+  left: 203px;
+  top: 780px;
+  background: #8C6160;
+  border: 1px solid #000;
+  border-radius: 25px;
+}
+
+.rectangle-middle-top {
+  position: absolute;
+  width: 280px;
+  height: 216px;
+  left: 553px;
+  top: 540px;
+  background: #73608C;
+  border: 1px solid #000;
+  border-radius: 25px;
+}
+
+.rectangle-middle-bottom {
+  position: absolute;
+  width: 280px;
+  height: 216px;
+  left: 553px;
+  top: 780px;
+  background: #8CA6BC;
+  border: 1px solid #000;
+  border-radius: 25px;
+}
+
+.text-large {
+  position: absolute;
+  font-family: 'KyivType Sans', sans-serif;
+  font-weight: 200;
+  font-size: 84px;
+  line-height: 101px;
+  color: #000;
+}
+
+.text-sf {
+  left: 234px;
+  top: 255px;
+  width: 559px;
+  height: 101px;
+}
+
+.text-temp {
+  position: absolute;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 115px;
+  text-align: center;
+  color: #000;
+  left: 323px;
+  top: 382px;
+  width: 390px;
+  height: 131px;
+}
+
+.rectangle-right {
+  position: absolute;
   width: 707px;
-  height: 900px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  box-sizing: border-box;
+  height: 958px;
+  left: 1092px;
+  top: 79px;
+  background: #FFFFFF;
+  border: 1px solid #000;
   border-radius: 25px;
 }
 
-.containerHighTemp {
-  height: 216px;
-  width: 280px;
-  background-color: #bcb28c;
+.search-box {
+  position: absolute;
+  width: 299px;
+  height: 63px;
+  left: 1296px;
+  top: 106px;
+  background: #FFFFFF;
+  border: 1px solid #000;
+  border-radius: 15px;
+  padding-left: 18px;
+  font-size: 40px;
+  line-height: 48px;
+  color: #000;
+}
+
+.forecast-title {
+  position: absolute;
+  width: 358px;
+  height: 73px;
+  left: 1267px;
+  top: 283px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+  color: #000;
+}
+
+.forecast-rect {
+  position: absolute;
+  width: 380px;
+  height: 92px;
+  left: 1256px;
+  border: 1px solid #000;
   border-radius: 25px;
 }
-.containerLowTemp {
-  height: 216px;
-  width: 280px;
-  background-color: #73608c;
-  border-radius: 25px;
-}
-.containerWindSpeed {
-  height: 216px;
-  width: 280px;
-  background-color: #8c6160;
-  border-radius: 25px;
-}
-.containerHumidity {
-  height: 216px;
-  width: 280px;
-  background-color: #8ca6bc;
-  border-radius: 25px;
-}
-.container5DayForecast {
-  height: 741px;
-  width: 495px;
-  background-color: #d5e3f2;
-}
-.containerMonday {
-  width: 380px;
+
+.forecast-rect.monday { top: 382px; background: #FFBFBF; }
+.forecast-rect.tuesday { top: 500px; background: #FFE8D2; }
+.forecast-rect.wednesday { top: 618px; background: #FEFFD3; }
+.forecast-rect.thursday { top: 736px; background: #D9FFBA; }
+.forecast-rect.friday { top: 854px; background: #A9E5FB; }
+
+.forecast-day {
+  position: absolute;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+  color: #000;
+  width: 312px;
   height: 92px;
-  background-color: #ffbfbf;
+  left: 1290px;
 }
-.containerTuesday {
-  width: 380px;
-  height: 92px;
-  background-color: #ffe8d2;
+
+.forecast-day.monday { top: 382px; }
+.forecast-day.tuesday { top: 500px; }
+.forecast-day.wednesday { top: 618px; }
+.forecast-day.thursday { top: 736px; }
+.forecast-day.friday { top: 854px; }
+
+.iconWeather, .iconHighTemp, .iconLowTemp, .iconWind, .iconHumidity {
+  position: absolute;
+  width: auto;
+  height: auto;
 }
-.containerWednesday {
-  width: 380px;
-  height: 92px;
-  background-color: #feffd3;
+
+/* Example positions (adjust these to match your Figma layout) */
+.iconWeather {
+  left: 20.78%;
+  top: calc(50% - 134px/2 - 365px);
+  height: 235px;
 }
-.containerThursday {
-  width: 380px;
-  height: 92px;
-  background-color: #d9ffba;
+
+.iconHighTemp {
+  left: 20.1%;
+  top: calc(50% - 36px/2 + 34px);
+  height: 45px; /* adjust as needed */
 }
-.containerFriday {
-  width: 380px;
-  height: 92px;
-  background-color: #a9e5fb;
+
+.iconLowTemp {
+  left: 38.12%;
+  top: calc(50% - 36px/2 + 35px);
+  height: 45px; /* adjust as needed */
+}
+
+.iconWind {
+  left: 20.1%; /* example, adjust to your design */
+  top: calc(50% + 250px); /* example, adjust to your design */
+  height: 50px; /* match your text height if needed */
+}
+
+.iconHumidity {
+  left: 38.12%; 
+  top: calc(50% + 250px);
+  height: 44px; 
+}
+
+.iconStar {
+  position: absolute;
+  left: 721px;
+  top: 241px;
+  width: 60px;
+  height: 60px;
 }

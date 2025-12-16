@@ -1,158 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kel's Weather App</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kel's Weather Figma</title>
     <link rel="stylesheet" href="/styles/styles.css" />
   </head>
-
   <body>
-    <!-- Current Search Container Start -->
-    <div class="main-container">
-      <div class="containerCurrentSearch">
-        <div class="row">
-          <img
-            src="/assets/Sunrise-nobg-removebg-preview.png"
-            alt="sunrise icon"
-            style="width: 237px; height: 135px"
-          />
+    <div class="frame">
+      <!-- Left white panel -->
+      <div class="rectangle-white-left"></div>
 
-          <div class="d-flex align-items-center gap-3">
-            <h1 class="mb-0">Stockton, CA</h1>
-            <button class="btn p-0 border-0 bg-transparent">
-              <img
-                src="/assets/star-outline-2-removebg-preview.png"
-                alt="Favorite Star Empty"
-                style="width: 57px; height: 59px"
-              />
-            </button>
-          </div>
+      <!-- Left weather boxes -->
+      <div class="rectangle-left-top"></div>
+      <div class="rectangle-left-bottom"></div>
+      <div class="rectangle-middle-top"></div>
+      <div class="rectangle-middle-bottom"></div>
 
-          <div class="containerHighTemp">
-            <div class="row">
-              <h1>High</h1>
-              <img
-                src="/assets/HighTemp-removebg-preview.png"
-                alt="High Temp Icon"
-                style="width: 100px; height: 36px"
-              />
-            </div>
-            <h2 id="highTemp">69 °F</h2>
-          </div>
+      <!-- City name -->
+      <div class="text-large text-sf">Stockton, CA</div>
 
-          <div class="containerLowTemp">
-            <h1>Low</h1>
-            <img
-              src="/assets/LowTemp-removebg-preview.png"
-              alt="Low Temp Icon"
-              style="width: 100px; height: 36px"
-            />
-            <h2 id="lowTemp">27 °F</h2>
-          </div>
+      <!-- Current temperature -->
+      <div class="text-temp">50 °F</div>
 
-          <div class="containerWindSpeed">
-            <div class="row">
-              <h1>Wind</h1>
-              <img
-                src="/assets/weather-61.png"
-                alt="Wind Speed Icon"
-                style="width: 100px; height: 36px"
-              />
-            </div>
-            <h2 id="windSpeed">3 mph</h2>
-          </div>
+      <!-- Right panel -->
+      <div class="rectangle-right"></div>
 
-          <div class="containerHumidity">
-            <div class="row">
-              <h1>Humidity</h1>
-              <img
-                src="/assets/droplet-2-blue.png"
-                alt="Humidity Icon"
-                style="width: 100px; height: 40px"
-              />
-            </div>
-            <h2 id="humidityPercentage">0%</h2>
-          </div>
-        </div>
-      </div>
+      <!-- Search box -->
+      <input type="text" class="search-box" placeholder="Search..." />
 
-      <!-- Current Search Container End -->
+      <!-- 5-Day Forecast -->
+      <div class="forecast-title">5-Day Forecast</div>
 
-      <!-- 5 Day Forecast Container Start -->
-      <div class="containerNewSearch">
-        <div class="row">
-          <input
-            id="cityInput"
-            type="text"
-            class="form-control"
-            placeholder="Search..."
-          />
-          <h5>Favorites:</h5>
-          <p id="storedValue">
-            St. Louis, MO <br />
-            Addis Ababa, ETH
-          </p>
-        </div>
+      <!-- Forecast rectangles -->
+      <div class="forecast-rect monday"></div>
+      <div class="forecast-rect tuesday"></div>
+      <div class="forecast-rect wednesday"></div>
+      <div class="forecast-rect thursday"></div>
+      <div class="forecast-rect friday"></div>
 
-        <div class="container5DayForecast">
-          <h3>5-Day Forecast</h3>
+      <!-- Forecast text -->
+      <div class="forecast-day monday">Monday Hi: 99 °F Lo: 00 °F</div>
+      <div class="forecast-day tuesday">Tuesday Hi: 99 °F Lo: 00 °F</div>
+      <div class="forecast-day wednesday">Wednesday Hi: 99 °F Lo: 00 °F</div>
+      <div class="forecast-day thursday">Thursday Hi: 99 °F Lo: 00 °F</div>
+      <div class="forecast-day friday">Friday Hi: 99 °F Lo: 00 °F</div>
 
-          <div class="containerMonday">
-            <div class="row">
-              <div class="col"><h6>Monday</h6></div>
-              <div class="col"><h6>Hi: 99 °F</h6></div>
-              <div class="col"><h6>Lo: 00 °F</h6></div>
-            </div>
-          </div>
-
-          <div class="containerTuesday">
-            <div class="row">
-              <div class="col"><h6>Tuesday</h6></div>
-              <div class="col"><h6>Hi: 99 °F</h6></div>
-              <div class="col"><h6>Lo: 00 °F</h6></div>
-            </div>
-          </div>
-
-          <div class="containerWednesday">
-            <div class="row">
-              <div class="col"><h6>Wednesday</h6></div>
-              <div class="col"><h6>Hi: 99 °F</h6></div>
-              <div class="col"><h6>Lo: 00 °F</h6></div>
-            </div>
-          </div>
-
-          <div class="containerThursday">
-            <div class="row">
-              <div class="col"><h6>Thursday</h6></div>
-              <div class="col"><h6>Hi: 99 °F</h6></div>
-              <div class="col"><h6>Lo: 00 °F</h6></div>
-            </div>
-          </div>
-
-          <div class="containerFriday">
-            <div class="row">
-              <div class="col"><h6>Friday</h6></div>
-              <div class="col"><h6>Hi: 99 °F</h6></div>
-              <div class="col"><h6>Lo: 00 °F</h6></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 5 Day Forecast Container End -->
+      <!-- Images placeholders for icons or SVGs -->
+      <img
+        src="/assets/Sunrise-nobg-removebg-preview.png"
+        class="iconWeather"
+        alt="Weather Icon"
+      />
+      <img src="/assets/HighTemp-removebg-preview.png" class="iconHighTemp" alt="High Temp Icon" />
+      <img src="/assets/LowTemp-removebg-preview.png" class="iconLowTemp" alt="Low Temp Icon" />
+      <img src="/assets/weather-61.png" class="iconWind" alt="Wind Icon">
+      <img src="/assets/droplet-2-blue.png" class="iconHumidity" alt="Humidity Icon">
+      <img src="/assets/star-outline-2-removebg-preview.png" class="iconStar" alt="Star Icon">
     </div>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="/scripts/app.js"></script>
   </body>
 </html>
