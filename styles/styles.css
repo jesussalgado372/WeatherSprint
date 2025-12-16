@@ -12,8 +12,8 @@ body {
 
 .containerCurrentSearch {
   background-color: white;
-  flex: 1 1 300px;
-  max-width: 450px;
+  width: 884px;
+  height: 958px;
   border: 1px solid #ddd;
   padding: 15px;
   box-sizing: border-box;
@@ -22,8 +22,8 @@ body {
 
 .containerNewSearch {
   background-color: white;
-  flex: 2 1 500px;
-  max-width: 700px;
+  width: 707px;
+  height: 958px;
   border: 1px solid #ddd;
   padding: 15px;
   box-sizing: border-box;
