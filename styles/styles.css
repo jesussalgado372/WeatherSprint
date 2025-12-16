@@ -234,7 +234,7 @@ body {
   flex-direction: column;
   gap: 18px; /* space between forecast days */
   z-index: 2;
-  padding-left: 38px; /* horizontal padding inside rectangle */
+  padding-left: 55px; /* horizontal padding inside rectangle */
 }
 
 /* Each day rectangle */
