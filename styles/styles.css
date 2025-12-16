@@ -55,20 +55,32 @@ body {
   border-radius: 25px;
 }
 .container5DayForecast {
+  height: 741px;
+  width: 495px;
   background-color: #d5e3f2;
 }
 .containerMonday {
+  width: 380px;
+  height: 92px;
   background-color: #ffbfbf;
 }
 .containerTuesday {
+  width: 380px;
+  height: 92px;
   background-color: #ffe8d2;
 }
 .containerWednesday {
+  width: 380px;
+  height: 92px;
   background-color: #feffd3;
 }
 .containerThursday {
+  width: 380px;
+  height: 92px;
   background-color: #d9ffba;
 }
 .containerFriday {
+  width: 380px;
+  height: 92px;
   background-color: #a9e5fb;
 }
