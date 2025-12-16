@@ -31,18 +31,26 @@ body {
 }
 
 .containerHighTemp {
+  height: 216px;
+  width: 280px;
   background-color: #bcb28c;
   border-radius: 25px;
 }
 .containerLowTemp {
+  height: 216px;
+  width: 280px;
   background-color: #73608c;
   border-radius: 25px;
 }
 .containerWindSpeed {
+  height: 216px;
+  width: 280px;
   background-color: #8c6160;
   border-radius: 25px;
 }
 .containerHumidity {
+  height: 216px;
+  width: 280px;
   background-color: #8ca6bc;
   border-radius: 25px;
 }
