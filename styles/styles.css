@@ -1,11 +1,35 @@
 body {
   background-color: #e0ddb2;
 }
+.main-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
 
 .containerCurrentSearch {
   background-color: white;
+  flex: 1 1 300px;
+  max-width: 450px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-sizing: border-box;
   border-radius: 25px;
 }
+
+.containerNewSearch {
+  background-color: white;
+  flex: 2 1 500px;
+  max-width: 700px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 25px;
+}
+
 .containerHighTemp {
   background-color: #bcb28c;
   border-radius: 25px;
@@ -21,4 +45,22 @@ body {
 .containerHumidity {
   background-color: #8ca6bc;
   border-radius: 25px;
+}
+.container5DayForecast {
+  background-color: #d5e3f2;
+}
+.containerMonday {
+  background-color: #ffbfbf;
+}
+.containerTuesday {
+  background-color: #ffe8d2;
+}
+.containerWednesday {
+  background-color: #feffd3;
+}
+.containerThursday {
+  background-color: #d9ffba;
+}
+.containerFriday {
+  background-color: #a9e5fb;
 }
