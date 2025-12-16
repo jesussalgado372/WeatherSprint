@@ -1,8 +1,6 @@
 const button = document.getElementById("getLocationBtn");
 const output = document.getElementById("output");
 
-const API_KEY = "f2606f929b628e4a115736f3765473ca";
-
 button.addEventListener("click", () => {
   output.textContent = "Getting your location...";
 
