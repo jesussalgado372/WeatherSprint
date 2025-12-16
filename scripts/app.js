@@ -1,3 +1,5 @@
+import { API_KEY } from './environment.js';   
+
 const button = document.getElementById("getLocationBtn");
 const output = document.getElementById("output");
 
