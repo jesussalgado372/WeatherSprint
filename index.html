@@ -42,7 +42,15 @@
       </div>
 
       <!-- City name -->
-      <div id="currentCity" class="text-large text-sf">Stockton, CA</div>
+      <div class="city-container">
+        <div id="currentCity" class="text-large">Stockton, CA</div>
+        <img
+          id="favoriteBtn"
+          src="/assets/star-outline-2-removebg-preview.png"
+          class="iconStar btn"
+          alt="Star Icon"
+        />
+      </div>
 
       <!-- Current temperature -->
       <div id="currentTemp" class="text-temp">50 °F</div>
@@ -123,12 +131,12 @@
         class="iconHumidity"
         alt="Humidity Icon"
       />
-      <img
+      <!-- <img
         id="favoriteBtn"
         src="/assets/star-outline-2-removebg-preview.png"
         class="iconStar btn"
         alt="Star Icon"
-      />
+      /> -->
     </div>
   </body>
   <script type="module" src="/scripts/app.js"></script>

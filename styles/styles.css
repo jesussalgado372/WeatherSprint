@@ -77,12 +77,33 @@ body {
   line-height: 101px;
   color: #000;
 }
+.city-container {
+  position: absolute;
+  left: 200px; /* same as before */
+  top: 255px; /* same as before */
+  display: flex;
+  align-items: center; /* vertically align the star with text */
+  gap: 15px; /* space between city name and star */
+  max-width: 700px; /* limit width to prevent overflow */
+}
 
-.text-sf {
-  left: 234px;
-  top: 255px;
-  width: 559px;
-  height: 101px;
+#currentCity {
+  font-family: "KyivType Sans", sans-serif;
+  font-weight: 200;
+  font-size: 84px;
+  line-height: 101px;
+  color: #000;
+  white-space: nowrap; /* prevent wrapping */
+  overflow: hidden; /* clip overflow if too long */
+  text-overflow: ellipsis; /* show "..." for overflow text */
+}
+
+.iconStar {
+  align-items: flex-end;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0; /* star doesn’t shrink */
+  cursor: pointer;
 }
 
 .text-temp {
@@ -329,13 +350,6 @@ body {
   height: 44px;
 }
 
-.iconStar {
-  position: absolute;
-  left: 721px;
-  top: 241px;
-  width: 60px;
-  height: 60px;
-}
 .favorites-pills-container {
   position: absolute;
   width: 112px;
@@ -348,7 +362,7 @@ body {
   font-weight: 400;
   font-size: 12px;
   line-height: 12px;
-  color: #FFF70042 25%;
+  color: #fff70042 25%;
 
   overflow-y: auto;
 }
