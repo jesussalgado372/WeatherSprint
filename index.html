@@ -20,38 +20,43 @@
       <!-- Left top weather box -->
       <div class="rectangle-left-top">
         <div class="label-high">High</div>
-        <div class="value-high">69 °F</div>
+        <div id="highTempBox" class="value-high">69 °F</div>
       </div>
 
       <!-- Left bottom weather box -->
       <div class="rectangle-left-bottom">
         <div class="label-wind">Wind</div>
-        <div class="value-wind">3 mph</div>
+        <div id="windBox" class="value-wind">3 mph</div>
       </div>
 
       <!-- Middle top weather box -->
       <div class="rectangle-middle-top">
         <div class="label-low">Low</div>
-        <div class="value-low">27 °F</div>
+        <div id="lowTempBox" class="value-low">27 °F</div>
       </div>
 
       <!-- Middle bottom weather box -->
       <div class="rectangle-middle-bottom">
         <div class="label-humidity">Humidity</div>
-        <div class="value-humidity">0%</div>
+        <div id="humidityBox" class="value-humidity">0%</div>
       </div>
 
       <!-- City name -->
-      <div class="text-large text-sf">Stockton, CA</div>
+      <div id="currentCity" class="text-large text-sf">Stockton, CA</div>
 
       <!-- Current temperature -->
-      <div class="text-temp">50 °F</div>
+      <div id="currentTemp" class="text-temp">50 °F</div>
 
       <!-- Right panel -->
       <div class="rectangle-right"></div>
 
       <!-- Search box -->
-      <input type="text" class="search-box" placeholder="Search..." />
+      <input
+        id="cityInput"
+        type="text"
+        class="search-box"
+        placeholder="Search..."
+      />
 
       <!-- Right side forecast container -->
       <div class="forecast-container-wrapper">
@@ -65,37 +70,36 @@
         <div class="forecast-items">
           <div class="forecast-day monday">
             <div class="day-name">Monday</div>
-            <div class="hi">Hi: 99 °F</div>
-            <div class="lo">Lo: 00 °F</div>
+            <div class="hi">Hi: -- °F</div>
+            <div class="lo">Lo: -- °F</div>
           </div>
 
           <div class="forecast-day tuesday">
             <div class="day-name">Tuesday</div>
-            <div class="hi">Hi: 99 °F</div>
-            <div class="lo">Lo: 00 °F</div>
+            <div class="hi">Hi: -- °F</div>
+            <div class="lo">Lo: -- °F</div>
           </div>
 
           <div class="forecast-day wednesday">
             <div class="day-name">Wednesday</div>
-            <div class="hi">Hi: 99 °F</div>
-            <div class="lo">Lo: 00 °F</div>
+            <div class="hi">Hi: -- °F</div>
+            <div class="lo">Lo: -- °F</div>
           </div>
 
           <div class="forecast-day thursday">
             <div class="day-name">Thursday</div>
-            <div class="hi">Hi: 99 °F</div>
-            <div class="lo">Lo: 00 °F</div>
+            <div class="hi">Hi: -- °F</div>
+            <div class="lo">Lo: -- °F</div>
           </div>
 
           <div class="forecast-day friday">
             <div class="day-name">Friday</div>
-            <div class="hi">Hi: 99 °F</div>
-            <div class="lo">Lo: 00 °F</div>
+            <div class="hi">Hi: -- °F</div>
+            <div class="lo">Lo: -- °F</div>
           </div>
         </div>
       </div>
 
-      <!-- Images placeholders for icons or SVGs -->
       <img
         src="/assets/Sunrise-nobg-removebg-preview.png"
         class="iconWeather"
@@ -124,4 +128,5 @@
       />
     </div>
   </body>
+  <script type="module" src="/scripts/app.js"></script>
 </html>
