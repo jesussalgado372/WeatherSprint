@@ -336,3 +336,22 @@ body {
   width: 60px;
   height: 60px;
 }
+.favorites-pills-container {
+  position: absolute;
+  width: 112px;
+  height: 200px; /* enough to show a few cities */
+  left: 1630px;
+  top: 106px;
+
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFF70042 25%;
+
+  overflow-y: auto;
+}
+.favorites-pills-container div {
+  margin-top: 4px;
+}

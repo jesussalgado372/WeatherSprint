@@ -1,24 +1,29 @@
 const saveToStorage = (item) => {
-  let listArr = getLocalStorage();
-  if (!listArr.includes(item)) {
-    listArr.push(item);
+  let favorites = getLocalStorage();
+  if (!favorites.includes(item)) {
+    favorites.push(item);
   }
-  localStorage.setItem("Items", JSON.stringify(listArr));
+  localStorage.setItem("Favorites", JSON.stringify(favorites));
 };
 
 const getLocalStorage = () => {
-  let value = localStorage.getItem("Items");
-  if (value === null) {
+  const value = localStorage.getItem("Favorites");
+  if (!value) return [];
+  try {
+    return JSON.parse(value);
+  } catch (err) {
+    console.error("Error parsing localStorage", err);
     return [];
   }
-  return JSON.parse(value);
 };
 
-const removeFromStorage = (Item) => {
-  let listArr = getLocalStorage();
-  let index = listArr.indexOf(Item);
-  listArr.splice(index, 1);
-  localStorage.setItem("Items", JSON.stringify(listArr));
+const removeFromStorage = (item) => {
+  let favorites = getLocalStorage();
+  const index = favorites.indexOf(item);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    localStorage.setItem("Favorites", JSON.stringify(favorites));
+  }
 };
 
-export { saveToStorage, getLocalStorage, removeFromStorage};
+export { saveToStorage, getLocalStorage, removeFromStorage };
