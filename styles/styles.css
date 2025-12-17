@@ -288,23 +288,39 @@ body {
 
 .temps {
   display: flex;
-  flex-direction: column; /* STACKED */
+  flex-direction: column;
   align-items: center;
-  gap: 2px;
 }
-.temps:hover{
-  display: flex;
+
+.forecast-day:hover .temps {
   flex-direction: row;
-  align-items: center;
+  gap: 6px;
 }
+
 .forecast-details {
   display: flex;
+  gap: 6px;
   opacity: 0;
 }
+
 .forecast-day:hover .forecast-details {
   opacity: 1;
-  max-height: 60px;
 }
+
+/* Base state: no separators */
+.temps span::after,
+.forecast-details span::after {
+  content: "";
+}
+
+/* On hover: add | between items */
+.forecast-day:hover .temps span:not(:last-child)::after,
+.forecast-day:hover .forecast-details span:not(:last-child)::after {
+  content: " | ";
+  margin-left: 6px;
+}
+
+
 
 /* Background colors for each day */
 .forecast-day.monday {
