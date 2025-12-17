@@ -86,11 +86,12 @@ body {
 }
 .city-container {
   position: absolute;
-  left: 180px; 
-  top: 255px; 
+  left: 180px;
+  top: 255px;
   display: flex;
-  align-items: center; 
-  gap: 15px; 
+  align-items: center;
+  text-align: center;
+  gap: 15px;
   max-width: 700px;
 }
 
@@ -101,6 +102,7 @@ body {
   line-height: 101px;
   color: #000;
   white-space: nowrap;
+  text-align: center;
 }
 .iconStar {
   position: absolute;
@@ -268,11 +270,32 @@ body {
   height: 92px;
   border-radius: 25px;
   border: 1px solid #000;
+  background: #feffd3;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
+
+  overflow: hidden;
+  transition: height 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+.forecast-day:hover {
+  height: 140px; /* expanded size */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.forecast-details {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.25s ease, max-height 0.35s ease;
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+.forecast-day:hover .forecast-details {
+  opacity: 1;
+  max-height: 60px;
 }
 
 /* Background colors for each day */
