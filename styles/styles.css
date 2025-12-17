@@ -86,12 +86,12 @@ body {
 }
 .city-container {
   position: absolute;
-  left: 180px; /* same as before */
-  top: 255px; /* same as before */
+  left: 180px; 
+  top: 255px; 
   display: flex;
-  align-items: center; /* vertically align the star with text */
-  gap: 15px; /* space between city name and star */
-  max-width: 700px; /* limit width to prevent overflow */
+  align-items: center; 
+  gap: 15px; 
+  max-width: 700px;
 }
 
 #currentCity {
