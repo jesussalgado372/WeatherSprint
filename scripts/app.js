@@ -1,5 +1,65 @@
 import API_KEY from "./environment.js";
 
+const STATE_ABBREVIATIONS = {
+  Alabama: "AL",
+  Alaska: "AK",
+  Arizona: "AZ",
+  Arkansas: "AR",
+  California: "CA",
+  Colorado: "CO",
+  Connecticut: "CT",
+  Delaware: "DE",
+  Florida: "FL",
+  Georgia: "GA",
+  Hawaii: "HI",
+  Idaho: "ID",
+  Illinois: "IL",
+  Indiana: "IN",
+  Iowa: "IA",
+  Kansas: "KS",
+  Kentucky: "KY",
+  Louisiana: "LA",
+  Maine: "ME",
+  Maryland: "MD",
+  Massachusetts: "MA",
+  Michigan: "MI",
+  Minnesota: "MN",
+  Mississippi: "MS",
+  Missouri: "MO",
+  Montana: "MT",
+  Nebraska: "NE",
+  Nevada: "NV",
+  "New Hampshire": "NH",
+  "New Jersey": "NJ",
+  "New Mexico": "NM",
+  "New York": "NY",
+  "North Carolina": "NC",
+  "North Dakota": "ND",
+  Ohio: "OH",
+  Oklahoma: "OK",
+  Oregon: "OR",
+  Pennsylvania: "PA",
+  "Rhode Island": "RI",
+  "South Carolina": "SC",
+  "South Dakota": "SD",
+  Tennessee: "TN",
+  Texas: "TX",
+  Utah: "UT",
+  Vermont: "VT",
+  Virginia: "VA",
+  Washington: "WA",
+  "West Virginia": "WV",
+  Wisconsin: "WI",
+  Wyoming: "WY",
+};
+
+const STATE_ABBREVIATIONS_NORMALIZED = Object.fromEntries(
+  Object.entries(STATE_ABBREVIATIONS).map(([state, abbr]) => [
+    state.toLowerCase(),
+    abbr,
+  ])
+);
+
 const cityInput = document.getElementById("cityInput");
 
 const currentCity = document.getElementById("currentCity");
@@ -10,14 +70,38 @@ const lowTempBox = document.getElementById("lowTempBox");
 const windBox = document.getElementById("windBox");
 const humidityBox = document.getElementById("humidityBox");
 
-function updateCurrentWeather(data) {
-  currentCity.textContent = `${data.name}, ${data.sys.country}`;
-  currentTemp.textContent = `${Math.round(data.main.temp)} °F`;
+function formatCityState(city, state) {
+  if (!state) return city;
 
+  const normalized = state.trim().replace(/\s+/g, " ").toLowerCase();
+
+  const abbr = STATE_ABBREVIATIONS_NORMALIZED[normalized];
+
+  return abbr ? `${city}, ${abbr}` : city;
+}
+
+function updateCurrentWeather(data) {
+  currentTemp.textContent = `${Math.round(data.main.temp)} °F`;
   highTempBox.textContent = `${Math.round(data.main.temp_max)} °F`;
   lowTempBox.textContent = `${Math.round(data.main.temp_min)} °F`;
   windBox.textContent = `${Math.round(data.wind.speed)} mph`;
   humidityBox.textContent = `${data.main.humidity}%`;
+}
+
+async function fetchLocationByCity(city) {
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
+    city
+  )}&limit=1&appid=${API_KEY}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  if (!data.length) {
+    alert("City not found");
+    return null;
+  }
+
+  return data[0];
 }
 
 async function fetchWeatherByCoords(lat, lon) {
@@ -27,28 +111,19 @@ async function fetchWeatherByCoords(lat, lon) {
   const data = await response.json();
 
   updateCurrentWeather(data);
-  cityInput.value = data.name;
-
   fetch5DayForecast(lat, lon);
 }
 
 async function fetchWeatherByCity(city) {
   if (!city) return;
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-    city
-  )}&appid=${API_KEY}&units=imperial`;
+  const location = await fetchLocationByCity(city);
+  if (!location) return;
 
-  const response = await fetch(url);
-  if (!response.ok) {
-    alert("City not found");
-    return;
-  }
+  const { lat, lon, name, state } = location;
 
-  const data = await response.json();
-  updateCurrentWeather(data);
-
-  fetch5DayForecast(data.coord.lat, data.coord.lon);
+  currentCity.textContent = formatCityState(name, state);
+  fetchWeatherByCoords(lat, lon);
 }
 
 async function fetch5DayForecast(lat, lon) {
@@ -60,7 +135,6 @@ async function fetch5DayForecast(lat, lon) {
 
     const dailyTemps = {};
 
-    // Group 3-hour data into days
     data.list.forEach((entry) => {
       const date = entry.dt_txt.split(" ")[0];
 
@@ -105,7 +179,23 @@ async function fetch5DayForecast(lat, lon) {
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
-    (pos) => fetchWeatherByCoords(pos.coords.latitude, pos.coords.longitude),
+    async (pos) => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+
+      const geoUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`;
+      const response = await fetch(geoUrl);
+      const [location] = await response.json();
+
+      if (location) {
+        currentCity.textContent = formatCityState(
+          location.name,
+          location.state
+        );
+      }
+
+      fetchWeatherByCoords(lat, lon);
+    },
     () => console.log("Geolocation denied")
   );
 }
