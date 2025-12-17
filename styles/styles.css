@@ -77,6 +77,13 @@ body {
   line-height: 101px;
   color: #000;
 }
+
+.text-sf {
+  left: 234px;
+  top: 255px;
+  width: 559px;
+  height: 101px;
+}
 .city-container {
   position: absolute;
   left: 200px; /* same as before */
@@ -97,11 +104,12 @@ body {
   overflow: hidden; /* clip overflow if too long */
   text-overflow: ellipsis; /* show "..." for overflow text */
 }
-
 .iconStar {
+  position: absolute;
+  left: 721px;
+  top: 241px;
   width: 60px;
   height: 60px;
-  flex-shrink: 0; /* star doesn’t shrink */
 }
 
 .text-temp {
