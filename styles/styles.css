@@ -381,31 +381,31 @@ body {
 .iconWeather {
   left: 20.78%;
   top: calc(50% - 134px / 2 - 365px);
-  height: 235px;
+  height: 250px;
 }
 
 .iconHighTemp {
   left: 20.1%;
-  top: calc(50% - 36px / 2 + 34px);
-  height: 45px;
+  top: calc(50% - 36px / 2 + 25px);
+  height: 50px;
 }
 
 .iconLowTemp {
   left: 38.12%;
-  top: calc(50% - 36px / 2 + 35px);
-  height: 45px;
+  top: calc(50% - 36px / 2 + 25px);
+  height: 50px;
 }
 
 .iconWind {
   left: 20.1%;
-  top: calc(50% + 250px);
-  height: 50px;
+  top: calc(50% + 230px);
+  height: 70px;
 }
 
 .iconHumidity {
-  left: 39.12%;
-  top: calc(50% + 250px);
-  height: 44px;
+  left: 40.5%;
+  top: calc(50% + 240px);
+  height: 50px;
 }
 
 .favorites-pills-container {
@@ -420,7 +420,7 @@ body {
   font-weight: 400;
   font-size: 12px;
   line-height: 12px;
-  color: #FFF700;
+  color: #fff700;
   opacity: 90%;
   border-color: black;
 
