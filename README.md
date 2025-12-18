@@ -7,7 +7,7 @@
 /*
 Start coding the structure layout
 Upload to Github
-Have all your API fetches made, shown in console
+Added search functionality, geolocation, and local storage for favorites
 */
 
 // You can add multiple dates with description.
