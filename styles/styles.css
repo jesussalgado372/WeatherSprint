@@ -154,7 +154,7 @@ body {
 
 /* High temperature */
 .label-high {
-  left: 79px;
+  left: 90px;
   top: 4px;
 }
 .value-high {
@@ -184,7 +184,7 @@ body {
 
 /* Humidity */
 .label-humidity {
-  left: 16px;
+  left: 30px;
   top: 0px;
 }
 .value-humidity {
