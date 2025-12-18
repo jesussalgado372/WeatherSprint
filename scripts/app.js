@@ -13,6 +13,7 @@ const humidityBox = document.getElementById("humidityBox");
 const favoriteBtn = document.getElementById("favoriteBtn");
 const favoritesList = document.getElementById("favoritesList");
 
+// -------------------- STATE ABBREVIATIONS --------------------
 const STATE_ABBREVIATIONS = {
   Alabama: "AL",
   Alaska: "AK",
@@ -66,6 +67,7 @@ const STATE_ABBREVIATIONS = {
   Wyoming: "WY",
 };
 
+// -------------------- LOCAL STORAGE --------------------
 const getLocalStorage = () => {
   const value = localStorage.getItem("favorites");
   return value ? JSON.parse(value) : [];
@@ -81,15 +83,14 @@ const saveToStorage = (cityState) => {
 };
 
 const removeFromStorage = (cityState) => {
-  let list = getLocalStorage();
-  list = list.filter((item) => item !== cityState);
+  const list = getLocalStorage().filter((item) => item !== cityState);
   localStorage.setItem("favorites", JSON.stringify(list));
 };
 
+// -------------------- FAVORITES UI --------------------
 function displayFavorites() {
   favoritesList.innerHTML = "<strong>Favorites:</strong><br>";
-  const favorites = getLocalStorage();
-  favorites.forEach((cityState) => {
+  getLocalStorage().forEach((cityState) => {
     const div = document.createElement("div");
     div.textContent = cityState;
     favoritesList.appendChild(div);
@@ -113,6 +114,7 @@ function updateStarButton() {
   }
 }
 
+// -------------------- HELPERS --------------------
 function formatCityState(city, stateOrCountry) {
   if (STATE_ABBREVIATIONS[stateOrCountry]) {
     return `${city}, ${STATE_ABBREVIATIONS[stateOrCountry]}`;
@@ -120,13 +122,27 @@ function formatCityState(city, stateOrCountry) {
   return `${city}, ${stateOrCountry}`;
 }
 
+function getNextFiveDays() {
+  const days = [];
+  const today = new Date();
+
+  for (let i = 1; i <= 5; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    days.push(date);
+  }
+
+  return days;
+}
+
+// -------------------- CURRENT WEATHER --------------------
 function updateCurrentWeather(data) {
   currentCity.textContent = formatCityState(
     data.name,
     data.sys.state || data.sys.country
   );
-  currentTemp.textContent = `${Math.round(data.main.temp)} °F`;
 
+  currentTemp.textContent = `${Math.round(data.main.temp)} °F`;
   highTempBox.textContent = `${Math.round(data.main.temp_max)} °F`;
   lowTempBox.textContent = `${Math.round(data.main.temp_min)} °F`;
   windBox.textContent = `${Math.round(data.wind.speed)} mph`;
@@ -135,51 +151,57 @@ function updateCurrentWeather(data) {
   updateStarButton();
 }
 
+// -------------------- FETCH WEATHER --------------------
 async function fetchWeatherByCity(city) {
   if (!city) return;
+
   try {
     const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
       city
     )}&limit=1&appid=${API_KEY}`;
-    const geoResponse = await fetch(geoUrl);
-    const geoData = await geoResponse.json();
+
+    const geoRes = await fetch(geoUrl);
+    const geoData = await geoRes.json();
+
     if (!geoData.length) return alert("City not found");
 
-    const { lat, lon, name, state } = geoData[0];
+    const { lat, lon, state } = geoData[0];
+
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
-    const weatherResponse = await fetch(weatherUrl);
-    const weatherData = await weatherResponse.json();
+    const weatherRes = await fetch(weatherUrl);
+    const weatherData = await weatherRes.json();
 
     weatherData.sys.state = state;
     updateCurrentWeather(weatherData);
     fetch5DayForecast(lat, lon);
   } catch (err) {
-    console.error("Fetch Error:", err);
+    console.error(err);
   }
 }
 
 async function fetchWeatherByCoords(lat, lon) {
   try {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
-    const response = await fetch(url);
-    const data = await response.json();
+    const res = await fetch(url);
+    const data = await res.json();
 
     updateCurrentWeather(data);
     cityInput.value = data.name;
-
     fetch5DayForecast(lat, lon);
   } catch (err) {
-    console.error("Fetch Error:", err);
+    console.error(err);
   }
 }
 
+// -------------------- 5 DAY FORECAST --------------------
 async function fetch5DayForecast(lat, lon) {
   try {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
-    const response = await fetch(url);
-    const data = await response.json();
+    const res = await fetch(url);
+    const data = await res.json();
 
     const dailyTemps = {};
+
     data.list.forEach((entry) => {
       const date = entry.dt_txt.split(" ")[0];
       if (!dailyTemps[date]) {
@@ -199,22 +221,40 @@ async function fetch5DayForecast(lat, lon) {
       }
     });
 
-    const days = Object.keys(dailyTemps).slice(0, 5);
-    const classes = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-    days.forEach((day, index) => {
-      if (!classes[index]) return;
-      document.querySelector(
-        `.forecast-day.${classes[index]} .hi`
-      ).textContent = `Hi: ${Math.round(dailyTemps[day].max)} °F`;
-      document.querySelector(
-        `.forecast-day.${classes[index]} .lo`
-      ).textContent = `Lo: ${Math.round(dailyTemps[day].min)} °F`;
+    const nextDays = getNextFiveDays();
+    const dayClasses = [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+    ];
+
+    nextDays.forEach((dateObj, index) => {
+      const dateKey = dateObj.toISOString().split("T")[0];
+      const forecast = dailyTemps[dateKey];
+      if (!forecast) return;
+
+      const dayName = dateObj.toLocaleDateString("en-US", {
+        weekday: "long",
+      });
+
+      const container = document.querySelector(
+        `.forecast-day.${dayClasses[index]}`
+      );
+
+      container.querySelector(".day-name").textContent = dayName;
+      container.querySelector(".hi").textContent =
+        `Hi: ${Math.round(forecast.max)} °F`;
+      container.querySelector(".lo").textContent =
+        `Lo: ${Math.round(forecast.min)} °F`;
     });
   } catch (err) {
-    console.error("Forecast Error:", err);
+    console.error(err);
   }
 }
 
+// -------------------- EVENTS --------------------
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     fetchWeatherByCity(cityInput.value.trim());
@@ -226,16 +266,15 @@ favoriteBtn.addEventListener("click", () => {
   const cityState = currentCity.textContent;
   if (!cityState) return;
 
-  if (isFavorited(cityState)) {
-    removeFromStorage(cityState);
-  } else {
-    saveToStorage(cityState);
-  }
+  isFavorited(cityState)
+    ? removeFromStorage(cityState)
+    : saveToStorage(cityState);
 
   displayFavorites();
   updateStarButton();
 });
 
+// -------------------- INIT --------------------
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     (pos) => fetchWeatherByCoords(pos.coords.latitude, pos.coords.longitude),
