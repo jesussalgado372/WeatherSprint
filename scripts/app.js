@@ -222,13 +222,7 @@ async function fetch5DayForecast(lat, lon) {
     });
 
     const nextDays = getNextFiveDays();
-    const dayClasses = [
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-    ];
+    const dayClasses = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 
     nextDays.forEach((dateObj, index) => {
       const dateKey = dateObj.toISOString().split("T")[0];
@@ -244,10 +238,12 @@ async function fetch5DayForecast(lat, lon) {
       );
 
       container.querySelector(".day-name").textContent = dayName;
-      container.querySelector(".hi").textContent =
-        `Hi: ${Math.round(forecast.max)} °F`;
-      container.querySelector(".lo").textContent =
-        `Lo: ${Math.round(forecast.min)} °F`;
+      container.querySelector(".hi").textContent = `Hi: ${Math.round(
+        forecast.max
+      )} °F`;
+      container.querySelector(".lo").textContent = `Lo: ${Math.round(
+        forecast.min
+      )} °F`;
     });
   } catch (err) {
     console.error(err);
