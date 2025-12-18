@@ -5,10 +5,11 @@
 // Weather Sprint
 
 /*
-Start coding the structure layout
-Upload to Github
-Added search functionality, geolocation, and local storage for favorites
-
+ Start coding the structure layout
+ Upload to Github
+ Get the site to look like the figma provided
+ Added search functionality, geolocation, and local storage for favorites
+ Make small changes to have better functionality
 */
 
 /*
