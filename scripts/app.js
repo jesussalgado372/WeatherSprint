@@ -13,24 +13,59 @@ const humidityBox = document.getElementById("humidityBox");
 const favoriteBtn = document.getElementById("favoriteBtn");
 const favoritesList = document.getElementById("favoritesList");
 
-// -------------------- STATE ABBREVIATIONS --------------------
 const STATE_ABBREVIATIONS = {
-  "Alabama": "AL", "Alaska": "AK", "Arizona": "AZ", "Arkansas": "AR",
-  "California": "CA", "Colorado": "CO", "Connecticut": "CT", "Delaware": "DE",
-  "Florida": "FL", "Georgia": "GA", "Hawaii": "HI", "Idaho": "ID",
-  "Illinois": "IL", "Indiana": "IN", "Iowa": "IA", "Kansas": "KS",
-  "Kentucky": "KY", "Louisiana": "LA", "Maine": "ME", "Maryland": "MD",
-  "Massachusetts": "MA", "Michigan": "MI", "Minnesota": "MN", "Mississippi": "MS",
-  "Missouri": "MO", "Montana": "MT", "Nebraska": "NE", "Nevada": "NV",
-  "New Hampshire": "NH", "New Jersey": "NJ", "New Mexico": "NM", "New York": "NY",
-  "North Carolina": "NC", "North Dakota": "ND", "Ohio": "OH", "Oklahoma": "OK",
-  "Oregon": "OR", "Pennsylvania": "PA", "Rhode Island": "RI", "South Carolina": "SC",
-  "South Dakota": "SD", "Tennessee": "TN", "Texas": "TX", "Utah": "UT",
-  "Vermont": "VT", "Virginia": "VA", "Washington": "WA", "West Virginia": "WV",
-  "Wisconsin": "WI", "Wyoming": "WY"
+  Alabama: "AL",
+  Alaska: "AK",
+  Arizona: "AZ",
+  Arkansas: "AR",
+  California: "CA",
+  Colorado: "CO",
+  Connecticut: "CT",
+  Delaware: "DE",
+  Florida: "FL",
+  Georgia: "GA",
+  Hawaii: "HI",
+  Idaho: "ID",
+  Illinois: "IL",
+  Indiana: "IN",
+  Iowa: "IA",
+  Kansas: "KS",
+  Kentucky: "KY",
+  Louisiana: "LA",
+  Maine: "ME",
+  Maryland: "MD",
+  Massachusetts: "MA",
+  Michigan: "MI",
+  Minnesota: "MN",
+  Mississippi: "MS",
+  Missouri: "MO",
+  Montana: "MT",
+  Nebraska: "NE",
+  Nevada: "NV",
+  "New Hampshire": "NH",
+  "New Jersey": "NJ",
+  "New Mexico": "NM",
+  "New York": "NY",
+  "North Carolina": "NC",
+  "North Dakota": "ND",
+  Ohio: "OH",
+  Oklahoma: "OK",
+  Oregon: "OR",
+  Pennsylvania: "PA",
+  "Rhode Island": "RI",
+  "South Carolina": "SC",
+  "South Dakota": "SD",
+  Tennessee: "TN",
+  Texas: "TX",
+  Utah: "UT",
+  Vermont: "VT",
+  Virginia: "VA",
+  Washington: "WA",
+  "West Virginia": "WV",
+  Wisconsin: "WI",
+  Wyoming: "WY",
 };
 
-// -------------------- LOCAL STORAGE --------------------
 const getLocalStorage = () => {
   const value = localStorage.getItem("favorites");
   return value ? JSON.parse(value) : [];
@@ -39,7 +74,7 @@ const getLocalStorage = () => {
 const saveToStorage = (cityState) => {
   let list = getLocalStorage();
   if (!list.includes(cityState)) {
-    if (list.length >= 3) list.shift(); // Limit to 3 favorites
+    if (list.length >= 3) list.shift();
     list.push(cityState);
   }
   localStorage.setItem("favorites", JSON.stringify(list));
@@ -47,15 +82,14 @@ const saveToStorage = (cityState) => {
 
 const removeFromStorage = (cityState) => {
   let list = getLocalStorage();
-  list = list.filter(item => item !== cityState);
+  list = list.filter((item) => item !== cityState);
   localStorage.setItem("favorites", JSON.stringify(list));
 };
 
-// -------------------- FAVORITES UI --------------------
 function displayFavorites() {
   favoritesList.innerHTML = "<strong>Favorites:</strong><br>";
   const favorites = getLocalStorage();
-  favorites.forEach(cityState => {
+  favorites.forEach((cityState) => {
     const div = document.createElement("div");
     div.textContent = cityState;
     favoritesList.appendChild(div);
@@ -71,15 +105,14 @@ function updateStarButton() {
   if (!cityState) return;
 
   if (isFavorited(cityState)) {
-    favoriteBtn.src = "/assets/star-outline-2-removebg-filled.png"; // filled star image
+    favoriteBtn.src = "/assets/star-outline-2-removebg-filled.png";
     favoriteBtn.classList.add("filled");
   } else {
-    favoriteBtn.src = "/assets/star-outline-2-removebg-preview.png"; // outline image
+    favoriteBtn.src = "/assets/star-outline-2-removebg-preview.png";
     favoriteBtn.classList.remove("filled");
   }
 }
 
-// -------------------- WEATHER FUNCTIONS --------------------
 function formatCityState(city, stateOrCountry) {
   if (STATE_ABBREVIATIONS[stateOrCountry]) {
     return `${city}, ${STATE_ABBREVIATIONS[stateOrCountry]}`;
@@ -88,7 +121,10 @@ function formatCityState(city, stateOrCountry) {
 }
 
 function updateCurrentWeather(data) {
-  currentCity.textContent = formatCityState(data.name, data.sys.state || data.sys.country);
+  currentCity.textContent = formatCityState(
+    data.name,
+    data.sys.state || data.sys.country
+  );
   currentTemp.textContent = `${Math.round(data.main.temp)} °F`;
 
   highTempBox.textContent = `${Math.round(data.main.temp_max)} °F`;
@@ -96,14 +132,15 @@ function updateCurrentWeather(data) {
   windBox.textContent = `${Math.round(data.wind.speed)} mph`;
   humidityBox.textContent = `${data.main.humidity}%`;
 
-  updateStarButton(); // Update star whenever weather changes
+  updateStarButton();
 }
 
-// -------------------- FETCH WEATHER --------------------
 async function fetchWeatherByCity(city) {
   if (!city) return;
   try {
-    const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${API_KEY}`;
+    const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
+      city
+    )}&limit=1&appid=${API_KEY}`;
     const geoResponse = await fetch(geoUrl);
     const geoData = await geoResponse.json();
     if (!geoData.length) return alert("City not found");
@@ -113,7 +150,7 @@ async function fetchWeatherByCity(city) {
     const weatherResponse = await fetch(weatherUrl);
     const weatherData = await weatherResponse.json();
 
-    weatherData.sys.state = state; // Add state for formatting
+    weatherData.sys.state = state;
     updateCurrentWeather(weatherData);
     fetch5DayForecast(lat, lon);
   } catch (err) {
@@ -143,13 +180,22 @@ async function fetch5DayForecast(lat, lon) {
     const data = await response.json();
 
     const dailyTemps = {};
-    data.list.forEach(entry => {
+    data.list.forEach((entry) => {
       const date = entry.dt_txt.split(" ")[0];
       if (!dailyTemps[date]) {
-        dailyTemps[date] = { min: entry.main.temp_min, max: entry.main.temp_max };
+        dailyTemps[date] = {
+          min: entry.main.temp_min,
+          max: entry.main.temp_max,
+        };
       } else {
-        dailyTemps[date].min = Math.min(dailyTemps[date].min, entry.main.temp_min);
-        dailyTemps[date].max = Math.max(dailyTemps[date].max, entry.main.temp_max);
+        dailyTemps[date].min = Math.min(
+          dailyTemps[date].min,
+          entry.main.temp_min
+        );
+        dailyTemps[date].max = Math.max(
+          dailyTemps[date].max,
+          entry.main.temp_max
+        );
       }
     });
 
@@ -157,17 +203,18 @@ async function fetch5DayForecast(lat, lon) {
     const classes = ["monday", "tuesday", "wednesday", "thursday", "friday"];
     days.forEach((day, index) => {
       if (!classes[index]) return;
-      document.querySelector(`.forecast-day.${classes[index]} .hi`).textContent =
-        `Hi: ${Math.round(dailyTemps[day].max)} °F`;
-      document.querySelector(`.forecast-day.${classes[index]} .lo`).textContent =
-        `Lo: ${Math.round(dailyTemps[day].min)} °F`;
+      document.querySelector(
+        `.forecast-day.${classes[index]} .hi`
+      ).textContent = `Hi: ${Math.round(dailyTemps[day].max)} °F`;
+      document.querySelector(
+        `.forecast-day.${classes[index]} .lo`
+      ).textContent = `Lo: ${Math.round(dailyTemps[day].min)} °F`;
     });
   } catch (err) {
     console.error("Forecast Error:", err);
   }
 }
 
-// -------------------- EVENT LISTENERS --------------------
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     fetchWeatherByCity(cityInput.value.trim());
@@ -189,13 +236,11 @@ favoriteBtn.addEventListener("click", () => {
   updateStarButton();
 });
 
-// -------------------- GEOLOCATION --------------------
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
-    pos => fetchWeatherByCoords(pos.coords.latitude, pos.coords.longitude),
+    (pos) => fetchWeatherByCoords(pos.coords.latitude, pos.coords.longitude),
     () => console.log("Geolocation denied")
   );
 }
 
-// -------------------- INITIALIZATION --------------------
 displayFavorites();
