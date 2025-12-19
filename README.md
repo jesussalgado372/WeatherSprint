@@ -16,6 +16,7 @@
  12/16 got the majority of the layout done
  12/17 started to get the api to work
  12/18 adjusted the layout more to match the figma and adjusted the api to update certain areas for the user
+ 12/19 after getting feedback I made adjustments to make the favorite items be clickable and make it so that the search only works for US cities
 */
 
 // Brandon Van Horn Review: Well Designed and close to the figma i like the hover on the days for more info very clean!
