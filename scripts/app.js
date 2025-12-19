@@ -158,14 +158,23 @@ async function fetchWeatherByCity(city) {
   try {
     const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
       city
-    )}&limit=1&appid=${API_KEY}`;
+    )},US&limit=1&appid=${API_KEY}`;
 
     const geoRes = await fetch(geoUrl);
     const geoData = await geoRes.json();
 
-    if (!geoData.length) return alert("City not found");
+    if (!geoData.length) {
+      alert("US city not found");
+      return;
+    }
 
-    const { lat, lon, state } = geoData[0];
+    const { lat, lon, state, country } = geoData[0];
+
+    // Extra safety check
+    if (country !== "US") {
+      alert("Please enter a city in the United States");
+      return;
+    }
 
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
     const weatherRes = await fetch(weatherUrl);
@@ -178,6 +187,7 @@ async function fetchWeatherByCity(city) {
     console.error(err);
   }
 }
+
 
 async function fetchWeatherByCoords(lat, lon) {
   try {
