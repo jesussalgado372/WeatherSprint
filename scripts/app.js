@@ -90,12 +90,20 @@ const removeFromStorage = (cityState) => {
 // -------------------- FAVORITES UI --------------------
 function displayFavorites() {
   favoritesList.innerHTML = "<strong>Favorites:</strong><br>";
+
   getLocalStorage().forEach((cityState) => {
     const div = document.createElement("div");
     div.textContent = cityState;
+    div.classList.add("favorite-item");
+
+    div.addEventListener("click", () => {
+      fetchWeatherByCity(cityState);
+    });
+
     favoritesList.appendChild(div);
   });
 }
+
 
 function isFavorited(cityState) {
   return getLocalStorage().includes(cityState);
@@ -134,6 +142,9 @@ function getNextFiveDays() {
 
   return days;
 }
+function isZipCode(value) {
+  return /^\d{5}(-\d{4})?$/.test(value);
+}
 
 // -------------------- CURRENT WEATHER --------------------
 function updateCurrentWeather(data) {
@@ -155,6 +166,10 @@ function updateCurrentWeather(data) {
 async function fetchWeatherByCity(city) {
   if (!city) return;
 
+  if (isZipCode(city)) {
+    alert("Please enter a city name, not a ZIP code.");
+    return;
+  }
   try {
     const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
       city
@@ -187,7 +202,6 @@ async function fetchWeatherByCity(city) {
     console.error(err);
   }
 }
-
 
 async function fetchWeatherByCoords(lat, lon) {
   try {
